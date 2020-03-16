@@ -5,16 +5,18 @@
 </template>
 
 <script>
-import Home from "@/views/Home.vue";
+import Home from '@/views/Home.vue'
 
 export default {
-  name: "App",
-  methods: {},
-  components: { Home }
-};
+  name: 'App',
+  methods: {
+  },
+  components: { Home } 
+}
 </script>
 
 <style scoped>
+
 </style>
 
 <style>
@@ -26,19 +28,18 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: "Open Sans", sans-serif;
+  font-family: Arial, sans-serif;
   color: #232321;
   background: #fff !important;
 }
 html,
 body,
-#app {
+#app{
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  background-color: rgb(31, 39, 57);
 }
-#app {
+#app{
   overflow: auto;
 }
 

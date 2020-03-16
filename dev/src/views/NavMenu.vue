@@ -1,63 +1,53 @@
 <template>
-  <div class="nav-menu">
-    <div class="dev-flex-c-b">
-      <div class="nav-logo dev-flex-c">
-        <!-- <img :src="logoImg" class="nav-logo-img" /> -->
-        <span class="nav-logo-text">{{ logoText }}</span>
-      </div>
-      <div class="nav-content dev-flex-c">
-        <div class="nav-content-item">
-          <a
-            href="https://github.com/one-data-model/prototype-registry/blob/verification/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-right-1"
-          >README</a>
-          <a
-            href="https://github.com/one-data-model/prototype-registry"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="p-right-1"
-          >GITHUB</a>
-          <a
-            href="https://one-data-model.github.io/prototype-registry/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >CONTACT</a>
-        </div>
-      </div>
+  <div class="nav-menu dev-flex-c-b">
+    <div class="nav-logo dev-flex-c">
+      <img :src="logoImg" class="nav-logo-img" />
+      <span class="nav-logo-text">{{ logoText }}</span>
     </div>
-    <div>
-      <p>
-        To submit new models please follow the instructions provided in the
-        <a
-          href="https://github.com/one-data-model/prototype-registry/blob/verification/README.md"
-          class="p-link"
-        >README</a> file.
-      </p>
+    <div class="nav-content dev-flex-c">
+      <div
+        class="nav-content-item"
+        v-for="item in menus"
+        :key="item.key"
+        @click="onClick(item)"
+      >{{ item.name }}</div>
     </div>
   </div>
 </template>
 
 <script>
-// import logoImg from "@/assets/image/logo.png";
+import logoImg from "@/assets/image/logo.png";
 
 export default {
   name: "NavMenu",
   data() {
     return {
-      // logoImg,
-      logoText: "ONE DATA MODEL REGISTRY"
+      logoImg,
+      logoText: "Vue Table Dynamic",
+      menus: [
+        {
+          key: "github",
+          name: "GitHub"
+        }
+      ]
     };
+  },
+  methods: {
+    onClick(item) {
+      if (item.key === "github") {
+        window.open("https://github.com/TheoXiong/vue-table-dynamic", "_blank");
+      }
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .nav-menu {
-  margin: 1em 0.5em;
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 0 20px;
   color: #ffffff;
   transition: all 0.4s ease;
   user-select: none;
@@ -65,7 +55,8 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-drag: none;
-  background-color: rgba(125, 125, 125, 0.5);
+  background-color: rgb(40, 44, 52);
+  box-shadow: 1px 1px 4px 1px rgba(40, 44, 52, 0.7);
 }
 
 .nav-logo-img {
@@ -73,44 +64,20 @@ export default {
   height: 24px;
 }
 .nav-logo-text {
-  margin-left: 0.4em;
-  font-size: 1.5em;
+  margin-left: 14px;
+  font-size: 20px;
   color: #ffffff;
   font-weight: 600;
-  padding-bottom: 0.7em;
-}
-
-.nav-menu p {
-  padding: 0 0 0 0.7em;
-  margin-bottom: 5em;
-  font-weight: normal;
-  font-size: 0.8em;
-}
-
-.p-link,
-.nav-content-item a,
-.nav-content-item a:visited,
-.nav-content-item a:focus {
-  color: rgb(248, 99, 121);
-  font-size: 1em;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.p-right-1 {
-  padding-right: 1em;
 }
 
 .nav-content-item {
   margin: 0 12px;
   font-size: 14px;
-  font-weight: bold;
   letter-spacing: 1px;
-  color: rgb(248, 99, 121);
+  color: #ffffff;
   cursor: pointer;
 }
-.nav-content-item:hover,
-.nav-menu a:hover {
-  color: #ffffff;
+.nav-content-item:hover {
+  color: #e0d5d5;
 }
 </style>
