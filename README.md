@@ -2,9 +2,10 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-[vue-table-dynamic](https://github.com/TheoXiong/vue-table-dynamic) is a vue component of dynamic table. It's designed to respond to data changes in real time, and oriented to the runtime.    
+[vue-table-dynamic](https://github.com/TheoXiong/vue-table-dynamic) is a vue component of dynamic table. It's designed to respond to data changes in real time, and oriented to the runtime.
 
 ## Features
+
 - Multiple Select
 - Search
 - Sort
@@ -19,28 +20,35 @@ English | [简体中文](./README.zh-CN.md)
 - Fixed Header
 
 ## Demo
-[https://theoxiong.github.io/vue-table-dynamic/](https://theoxiong.github.io/vue-table-dynamic/) 
+
+[https://theoxiong.github.io/vue-table-dynamic/](https://theoxiong.github.io/vue-table-dynamic/)
 
 ![Demo](./demo.png)
 
 ## Install
-``` 
+
+```
 $   npm install vue-table-dynamic --save
 ```
 
 ## Usage
 
 ### Import
+
 ```
 import VueTableDynamic from 'vue-table-dynamic'
 ```
 
 ### Registration
+
 #### Global registration
+
 ```
 Vue.use(VueTableDynamic)
 ```
+
 #### Local registration
+
 ```
 <script>
 export default {
@@ -48,6 +56,14 @@ export default {
 }
 </script>
 ```
+
+### Run In Development - On Terminal
+
+1. npm run-script build
+2. npm run-script build:server
+3. npm run-script server
+
+Go to Localhost:9088 in browser
 
 ### Basic Table
 
@@ -88,10 +104,10 @@ export default {
 
 Bordered table usage
 
-- `border:`*`true`* with border
-- `border:`*`false`* without border
+- `border:`_`true`_ with border
+- `border:`_`false`_ without border
 
-![border](./docs/images/border.png)   
+![border](./docs/images/border.png)
 
 ```
 <template>
@@ -127,8 +143,8 @@ export default {
 
 Striped rows
 
-- `stripe:`*`true`* striped   
-- `stripe:`*`false`* unstriped      
+- `stripe:`_`true`_ striped
+- `stripe:`_`false`_ unstriped
 
 ![stripe](./docs/images/stripe.png)
 
@@ -168,10 +184,10 @@ export default {
 
 Highlighted rows/columns/cells
 
-- `highlight:`*`{row?:Array<number>; column?:Array<number>; cell?:Array<[number,number]>;}`* configure highlighted rows, columns, cells. such as: *`{row: [1], column: [1], cell: [[-1, -1]]}`* if negative, the position from the end of the array.
-- `highlightedColor:`*`string`* configure highlighted colors 
+- `highlight:`_`{row?:Array<number>; column?:Array<number>; cell?:Array<[number,number]>;}`_ configure highlighted rows, columns, cells. such as: _`{row: [1], column: [1], cell: [[-1, -1]]}`_ if negative, the position from the end of the array.
+- `highlightedColor:`_`string`_ configure highlighted colors
 
-![highlight](./docs/images/highlight.png)   
+![highlight](./docs/images/highlight.png)
 
 ```
 <template>
@@ -211,19 +227,19 @@ export default {
 
 Select multiple rows
 
-- `showCheck:`*`boolean`* show checkbox of rows
-- `getCheckedRowDatas:`*`function`* get data for all currently selected rows
-- `setAllRowChecked:`*`function(selected:boolean)`* toggle all selection
-- `select:`*`event`* currently selected/unselected rows            
+- `showCheck:`_`boolean`_ show checkbox of rows
+- `getCheckedRowDatas:`_`function`_ get data for all currently selected rows
+- `setAllRowChecked:`_`function(selected:boolean)`_ toggle all selection
+- `select:`_`event`_ currently selected/unselected rows
 
-![checkbox](./docs/images/checkbox.png)   
+![checkbox](./docs/images/checkbox.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
-      @select="onSelect" 
+    <vue-table-dynamic
+      :params="params"
+      @select="onSelect"
       @selection-change="onSelectionChange"
       ref="table"
     >
@@ -267,16 +283,16 @@ export default {
 
 Filter rows by keyword
 
-- `enableSearch:`*`boolean`* enable/disable searching
-- `search:`*`function(value:string)`* manual row filtering     
+- `enableSearch:`_`boolean`_ enable/disable searching
+- `search:`_`function(value:string)`_ manual row filtering
 
-![search](./docs/images/search.png)   
+![search](./docs/images/search.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
+    <vue-table-dynamic
+      :params="params"
       ref="table"
     >
     </vue-table-dynamic>
@@ -312,15 +328,15 @@ export default {
 
 Sort rows based on specified column data
 
-- `sort:`*`Array<number>`* array members are sortable column indexes. such as: *`[0, 1]`*
+- `sort:`_`Array<number>`_ array members are sortable column indexes. such as: _`[0, 1]`_
 
-![sort](./docs/images/sort.png)  
+![sort](./docs/images/sort.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
+    <vue-table-dynamic
+      :params="params"
       ref="table"
     >
     </vue-table-dynamic>
@@ -356,18 +372,18 @@ export default {
 
 Filter rows based on specified column data and rule
 
-- `filter:`*`Array<{column:number; content:Array<{text:string; value:string|number;}>; method:function;}>`* specify filterable columns and rules. such as: *`[{column: 0, content: [{text: '> 2', value: 2}], method: (value, cell) => { return cell.data > value }}]`*
+- `filter:`_`Array<{column:number; content:Array<{text:string; value:string|number;}>; method:function;}>`_ specify filterable columns and rules. such as: _`[{column: 0, content: [{text: '> 2', value: 2}], method: (value, cell) => { return cell.data > value }}]`_
 - `filter[].column:` column index
 - `filter[].content:` filter items
-- `filter[].method:` filter rule.     
+- `filter[].method:` filter rule.
 
-![filter](./docs/images/filter.png) 
+![filter](./docs/images/filter.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
+    <vue-table-dynamic
+      :params="params"
       ref="table"
     >
     </vue-table-dynamic>
@@ -391,12 +407,12 @@ export default {
         ],
         header: 'row',
         filter: [{
-          column: 0, 
-          content: [{text: '> 2', value: 2}, {text: '> 4', value: 4}], 
+          column: 0,
+          content: [{text: '> 2', value: 2}, {text: '> 4', value: 4}],
           method: (value, tableCell) => { return tableCell.data > value }
         }, {
-          column: 3, 
-          content: [{text: '2019-01-01', value: '2019-01-01'}, {text: '2019-02-02', value: '2019-02-02'}], 
+          column: 3,
+          content: [{text: '2019-01-01', value: '2019-01-01'}, {text: '2019-02-02', value: '2019-02-02'}],
           method: (value, tableCell) => { return String(tableCell.data).toLocaleLowerCase().includes(String(value).toLocaleLowerCase()) }
         }],
       }
@@ -413,17 +429,17 @@ export default {
 
 Table with pagination
 
-- `pagination:`*`boolean`* enable/disable pagination
-- `pageSize?:`*`number`* row count of each page. default: *`10`*
-- `pageSizes?:`*`Array<number>`* options of row count per page. default: *`[10, 20, 50, 100]`*        
+- `pagination:`_`boolean`_ enable/disable pagination
+- `pageSize?:`_`number`_ row count of each page. default: _`10`_
+- `pageSizes?:`_`Array<number>`_ options of row count per page. default: _`[10, 20, 50, 100]`_
 
-![pagination](./docs/images/pagination.png)  
+![pagination](./docs/images/pagination.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
+    <vue-table-dynamic
+      :params="params"
       ref="table"
     >
     </vue-table-dynamic>
@@ -466,21 +482,21 @@ export default {
 
 ### Edit
 
-Editable table     
+Editable table  
 Support specifying rows/columns/cells for editing
 
-- `edit:`*`{row?:Array<number>; column?:Array<number>; cell?:Array<[number,number]>;}`* configure editable rows, columns, cells. such as: *`{row: [1], column: [1], cell: [[-1, -1]]}`*. if negative, the position from the end of the array.
-- `getData:`*`function()`* table data changed after editing, get the latest data by this method.
-- `cell-change:`*`event`* cell data changed event
-- `edit:`*`{row: 'all'}`* all cells can be edited      
-- if `header` is *`'row'`*, the first row is not editable        
+- `edit:`_`{row?:Array<number>; column?:Array<number>; cell?:Array<[number,number]>;}`_ configure editable rows, columns, cells. such as: _`{row: [1], column: [1], cell: [[-1, -1]]}`_. if negative, the position from the end of the array.
+- `getData:`_`function()`_ table data changed after editing, get the latest data by this method.
+- `cell-change:`_`event`_ cell data changed event
+- `edit:`_`{row: 'all'}`_ all cells can be edited
+- if `header` is _`'row'`_, the first row is not editable
 
-![edit](./docs/images/edit.png)  
+![edit](./docs/images/edit.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
+    <vue-table-dynamic
       :params="params"
       @cell-change="onCellChange"
       ref="table"
@@ -526,11 +542,11 @@ export default {
 
 Configure column width
 
-- `columnWidth:`*`Array<{column:number; width:number|string;}>`* such as: *`[{column: 0, width: 60}, {column: 3, width: '15%'}]`*
+- `columnWidth:`_`Array<{column:number; width:number|string;}>`_ such as: _`[{column: 0, width: 60}, {column: 3, width: '15%'}]`_
 - `columnWidth[].column` index of column
 - `columnWidth[].width` width of column. number for pixel value, string for percentage
 
-![width](./docs/images/width.png)  
+![width](./docs/images/width.png)
 
 ```
 <template>
@@ -565,11 +581,11 @@ export default {
 
 ### Header Configure
 
-- `header:`*`row`* the first row is header
-- `header:`*`column`* the first column is header
-- `header:`*`''`* no header
+- `header:`_`row`_ the first row is header
+- `header:`_`column`_ the first column is header
+- `header:`_`''`_ no header
 
-![Header](./docs/images/header.png)  
+![Header](./docs/images/header.png)
 
 ```
 <template>
@@ -606,16 +622,16 @@ export default {
 
 Fix header by configure the height of table
 
-- `height:`*`number`* table height
-- when the value of `header` is not *`'row'`*, the first row is a normal row, will not fixed      
+- `height:`_`number`_ table height
+- when the value of `header` is not _`'row'`_, the first row is a normal row, will not fixed
 
-![height](./docs/images/height.png)  
+![height](./docs/images/height.png)
 
 ```
 <template>
   <div style="width: 600px">
-    <vue-table-dynamic 
-      :params="params" 
+    <vue-table-dynamic
+      :params="params"
       ref="table"
     >
     </vue-table-dynamic>
@@ -662,53 +678,50 @@ export default {
 - the following items are all child properties of the `params` object
 - `data` is required attribute, others are optional
 
-| name | description | type | optional value | default value |
-| -----| ----------- | ---- | -------------- | ------------- |
-| `data`   | source data | `Array<[number, ..., number]>` | - | `[]` |
-| `header` | configure header | `string` | `row`: the first row is header; `column`: the first column is header; `''`: no header | `''`  |
-| `border` | table with border | `boolean` | `true`/`false` | `false` |
-| `stripe` | striped table | `boolean` | `true`/`false` | `false` |
-| `highlight` | configure highlighted rows, columns, cells. such as: {row: `[1]`, column: `[1]`, cell: `[[-1, -1]]`}. if negative, the position from the end of the array. | {row?:Array<>; column?:Array<>; cell?:Array<>;} | - | `{}` |
-| `highlightedColor` | highlighted colors | `string` | - | `#EBEBEF` |
-| `wordWrap` | word-wrap style of table cell | `string` | `normal/break-word` | `normal` |
-| `whiteSpace` | white-space style of table cell | `string` | `nowrap/normal/pre/pre-wrap/pre-line` | `nowrap` |
-| `textOverflow` | text-overflow style of table cell | `string` | `clip/ellipsis` | `clip` |
-| `showCheck` | show checkbox of rows. Only when the `header` is `'row'`, the first cell of the first row is the checkbox of all rows. Otherwise, the first cell is the checkbox of the first row | `boolean` | `true`/`false` | `false` |
-| `enableSearch` | enable/disable searching, filter rows by keyword | `boolean` | `true`/`false` | `false`   |
-| `minWidth` | min width of table | `number` | - | `300` |
-| `maxWidth` | max width of table | `number` | - | `1000` |
-| `height` | table height. fix header by configure the height of table | `number` | -  | - |
-| `headerHeight` | header height  | `number`  | `>= 24` | `30` |
-| `rowHeight` | row height  | `number`  | `>= 24` | `30` |
-| `columnWidth` | Configure column width | Array<{column:number; width:number/string;}> | - | - |
-| `sort` | sort rows based on specified column data | `Array<number>` | - | - |
-| `filter` | filter rows based on specified column data and rule. `column`: index; `content`: filter items; `method` filter rule. | Array<{column, content, method}> | - | - |
-| `edit` | specifying rows/columns/cells for editing. table data changed after editing, get the latest data by `getData` method | {row?:Array<>; column?:Array<>; cell?:Array<>;} | -  | - |
-| `pagination` | table with pagination | `boolean`  | `true`/`false` | `false`   |
-| `pageSize`  | row count of each page | `number`   | -   | `10` |
-| `pageSizes` | options of row count per page | `Array<number>`  | - | `[10, 20, 50, 100]`|
+| name               | description                                                                                                                                                                       | type                                            | optional value                                                                        | default value       |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------- |
+| `data`             | source data                                                                                                                                                                       | `Array<[number, ..., number]>`                  | -                                                                                     | `[]`                |
+| `header`           | configure header                                                                                                                                                                  | `string`                                        | `row`: the first row is header; `column`: the first column is header; `''`: no header | `''`                |
+| `border`           | table with border                                                                                                                                                                 | `boolean`                                       | `true`/`false`                                                                        | `false`             |
+| `stripe`           | striped table                                                                                                                                                                     | `boolean`                                       | `true`/`false`                                                                        | `false`             |
+| `highlight`        | configure highlighted rows, columns, cells. such as: {row: `[1]`, column: `[1]`, cell: `[[-1, -1]]`}. if negative, the position from the end of the array.                        | {row?:Array<>; column?:Array<>; cell?:Array<>;} | -                                                                                     | `{}`                |
+| `highlightedColor` | highlighted colors                                                                                                                                                                | `string`                                        | -                                                                                     | `#EBEBEF`           |
+| `wordWrap`         | word-wrap style of table cell                                                                                                                                                     | `string`                                        | `normal/break-word`                                                                   | `normal`            |
+| `whiteSpace`       | white-space style of table cell                                                                                                                                                   | `string`                                        | `nowrap/normal/pre/pre-wrap/pre-line`                                                 | `nowrap`            |
+| `textOverflow`     | text-overflow style of table cell                                                                                                                                                 | `string`                                        | `clip/ellipsis`                                                                       | `clip`              |
+| `showCheck`        | show checkbox of rows. Only when the `header` is `'row'`, the first cell of the first row is the checkbox of all rows. Otherwise, the first cell is the checkbox of the first row | `boolean`                                       | `true`/`false`                                                                        | `false`             |
+| `enableSearch`     | enable/disable searching, filter rows by keyword                                                                                                                                  | `boolean`                                       | `true`/`false`                                                                        | `false`             |
+| `minWidth`         | min width of table                                                                                                                                                                | `number`                                        | -                                                                                     | `300`               |
+| `maxWidth`         | max width of table                                                                                                                                                                | `number`                                        | -                                                                                     | `1000`              |
+| `height`           | table height. fix header by configure the height of table                                                                                                                         | `number`                                        | -                                                                                     | -                   |
+| `headerHeight`     | header height                                                                                                                                                                     | `number`                                        | `>= 24`                                                                               | `30`                |
+| `rowHeight`        | row height                                                                                                                                                                        | `number`                                        | `>= 24`                                                                               | `30`                |
+| `columnWidth`      | Configure column width                                                                                                                                                            | Array<{column:number; width:number/string;}>    | -                                                                                     | -                   |
+| `sort`             | sort rows based on specified column data                                                                                                                                          | `Array<number>`                                 | -                                                                                     | -                   |
+| `filter`           | filter rows based on specified column data and rule. `column`: index; `content`: filter items; `method` filter rule.                                                              | Array<{column, content, method}>                | -                                                                                     | -                   |
+| `edit`             | specifying rows/columns/cells for editing. table data changed after editing, get the latest data by `getData` method                                                              | {row?:Array<>; column?:Array<>; cell?:Array<>;} | -                                                                                     | -                   |
+| `pagination`       | table with pagination                                                                                                                                                             | `boolean`                                       | `true`/`false`                                                                        | `false`             |
+| `pageSize`         | row count of each page                                                                                                                                                            | `number`                                        | -                                                                                     | `10`                |
+| `pageSizes`        | options of row count per page                                                                                                                                                     | `Array<number>`                                 | -                                                                                     | `[10, 20, 50, 100]` |
 
 ### Methods
 
-| method name  | description     | parameters       | return  |
-| ------- | -------- | --------- | ---------- |
-| `getData`  | table data changed after editing, get the latest data by this method | - | `Array<[number, ..., number]>` |
-| `getCheckedRowDatas` | get data for all currently selected rows | `includeWhenHeaderInfirstRow: boolean` include header row when the first row is header，default is `false` | `Array<[number, ..., number]>` |
-| `getRowData` | get row data by index | `rowIndex:number` index；`isCurrent: boolean` is the index sorted，default is `false` | `Array<number>` |
-| `search`  | manual row filtering | `searchValue:string` keyword | - |
-| `clearSearch`  | clear searching, show all rows | -  | -  |
-| `toPage`  | switch to the target page, when pagination is enable | `tagetPage:number` page to switch  | -  |
+| method name          | description                                                          | parameters                                                                                                 | return                         |
+| -------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `getData`            | table data changed after editing, get the latest data by this method | -                                                                                                          | `Array<[number, ..., number]>` |
+| `getCheckedRowDatas` | get data for all currently selected rows                             | `includeWhenHeaderInfirstRow: boolean` include header row when the first row is header，default is `false` | `Array<[number, ..., number]>` |
+| `getRowData`         | get row data by index                                                | `rowIndex:number` index；`isCurrent: boolean` is the index sorted，default is `false`                      | `Array<number>`                |
+| `search`             | manual row filtering                                                 | `searchValue:string` keyword                                                                               | -                              |
+| `clearSearch`        | clear searching, show all rows                                       | -                                                                                                          | -                              |
+| `toPage`             | switch to the target page, when pagination is enable                 | `tagetPage:number` page to switch                                                                          | -                              |
 
 ### Events
 
-| event name    | description   | parameters |
-| ------------- | ------------- | ---------- |
-| `select`  | event when selecting a row | `checked: boolean`; ` index: number`; `data: Array<string\number>` |
-| `select-all` | event when clicking the checkbox in table header | `isCheckedAll: boolean` |
-| `row-click` | event when clicking a row | ` index:number`; `data:Array<string\number>` |
-| `cell-click` | event when clicking a cell | `rowIndex:number`; `columnIndex:number`; ` data:string\number` |
-| `cell-change` | event when edting a cell | `rowIndex:number`; `columnIndex:number`; `data:string\number` |
-| `sort-change` | event when sorting | `index: number`; `value: string` |
-
-
-
+| event name    | description                                      | parameters                                                        |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------- |
+| `select`      | event when selecting a row                       | `checked: boolean`; `index: number`; `data: Array<string\number>` |
+| `select-all`  | event when clicking the checkbox in table header | `isCheckedAll: boolean`                                           |
+| `row-click`   | event when clicking a row                        | `index:number`; `data:Array<string\number>`                       |
+| `cell-click`  | event when clicking a cell                       | `rowIndex:number`; `columnIndex:number`; `data:string\number`     |
+| `cell-change` | event when edting a cell                         | `rowIndex:number`; `columnIndex:number`; `data:string\number`     |
+| `sort-change` | event when sorting                               | `index: number`; `value: string`                                  |
