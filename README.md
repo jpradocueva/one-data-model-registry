@@ -10,11 +10,9 @@
 (if needed)
 
 `3. npm run-script build`
-`4. npm run-script build:server`
-`5. npm run-script server`
 
-`6. Ctrl+C`
-`7. Y/N`
-(To stop or re-build for any changes)
+`4. npm run-script build:server`
+
+`5. npm run-script server`
 
 Go to Localhost:9088 in browser
