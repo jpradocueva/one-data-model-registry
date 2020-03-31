@@ -3,32 +3,6 @@
     <header>
       <nav-menu></nav-menu>
     </header>
-    <!-- <aside>
-      <vuescroll :ops="scrollBarOpts" ref="vuescroll">
-        <vue-button class="aside-btns" size="mini" @click="addRow">Add Row</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="deleteRow">Delete Row</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="addColumn">Add Column</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="deleteColumn">Delete Column</vue-button>
-        <div class="aside-line"></div>
-        <vue-button class="aside-btns" size="mini" @click="fixedHeader">Fixed Header</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleHeader">Toggle Header</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleBorder">Toggle Border</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleStripe">Toggle Stripe</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleHighlight">Toggle Highlight</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleSelect">Toggle Select</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleSearch">Toggle Search</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleFilter">Toggle Filter</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleSort">Toggle Sort</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toggleEdit">Toggle Edit</vue-button>
-        <div class="aside-line"></div>
-        <vue-button class="aside-btns" size="mini" @click="togglePagination">Toggle Pagination</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="toPage">To Random Page</vue-button>
-        <div class="aside-line"></div>
-        <vue-button class="aside-btns" size="mini" @click="changeColumnWidth">Change Column Width</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="changeHeaderHeight">Change Header Height</vue-button>
-        <vue-button class="aside-btns" size="mini" @click="changeRowHeight">Change Row Height</vue-button>
-      </vuescroll>
-    </aside>-->
     <section>
       <vue-table-dynamic
         :params="params"
@@ -49,7 +23,6 @@
 import NavMenu from "./NavMenu.vue";
 import VueButton from "./VueButton.vue";
 import VueMsg from "vue-msgs";
-// import vuescroll from "vuescroll";
 import { saveAs } from "file-saver";
 import { table, getBorderCharacters } from "table";
 import data from "../../../data/convertjson.json";
@@ -63,9 +36,6 @@ const defaultTableParams = {
   height: "",
   headerHeight: 30,
   rowHeight: "auto",
-  // wordWrap: 'break-word',
-  // whiteSpace: 'normal',
-  // textOverflow: 'clip',
   border: true,
   stripe: true,
   showCheck: true,
@@ -74,45 +44,8 @@ const defaultTableParams = {
   sort: [0, 1],
   edit: {},
   highlight: {},
-  filter: [
-    // {
-    //   column: 0,
-    //   content: [
-    //     { text: "> 3", value: 3 },
-    //     { text: "> 5", value: 5 },
-    //     { text: "> 7", value: 7 }
-    //   ],
-    //   method: (value, tableCell) => {
-    //     return tableCell.data > value;
-    //   }
-    // }
-    // {
-    //   column: 2,
-    //   content: [
-    //     { text: "1-Cell", value: "1-Cell" },
-    //     { text: "2-Cell", value: "2-Cell" },
-    //     { text: "3-Cell", value: "3-Cell" }
-    //   ],
-    //   method: (value, tableCell) => {
-    //     return String(tableCell.data)
-    //       .toLocaleLowerCase()
-    //       .includes(String(value).toLocaleLowerCase());
-    //   }
-    // }
-  ],
   pagination: true
-  // pageSize: 20,
-  // pageSizes: [5, 15, 30, 50, 100]
 };
-
-// for (let i = 0; i < 150; i++) {
-//   defaultTableParams.data.push([
-//     i + 1,
-//     `${random()}-Cell`,
-//     `${random()}-Cell`,
-//     `${random()}-Cell`
-//   ]);
-// }
 
 for (let i = 0; i < data.length; i++) {
   defaultTableParams.data.push([
@@ -403,6 +336,6 @@ export default {
 </style>
 <style>
 .v-show-border {
-  border: 1px solid blue;
+  border: 1px solid #ccc;
 }
 </style>

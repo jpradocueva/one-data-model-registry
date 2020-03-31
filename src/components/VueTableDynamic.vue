@@ -10,10 +10,8 @@
           v-if="enableSearch"
           class="tools-search"
           v-model="searchValue"
-          placeholder="Search: (tags +/or Name +/or Type +/or Submitter)"
-        >
-          <!-- <i class="iconfont iconsearch" slot="prefix"></i> -->
-        </vue-input>
+          placeholder="Search: (Tags +/or Name +/or Type +/or Submitter)"
+        ></vue-input>
       </div>
       <table
         class="v-table"
@@ -28,21 +26,6 @@
           :style="{ height: headerHeight + 'px' }"
           @click="onClickRow(tableData.rows[0], 0)"
         >
-          <!-- <div
-            v-if="showCheck"
-            class="table-check flex-c-c"
-            :class="{ 'v-show-border':tableBorder }"
-            :style="{ backgroundColor: isHighlighted(0, NaN) ? highlightedColor : 'transparent' }"
-          >
-            <div
-              class="table-check-all flex-c-c"
-              :class="{ 'is-checked': tableData.rows[0].checked }"
-              @click.stop="onCheckAll(tableData.rows[0])"
-            >
-              <i class="iconfont iconcheck" v-show="tableData.rows[0].checked === true"></i>
-              <i class="iconfont iconminus" v-show="tableData.rows[0].checked === 'indeterminate'"></i>
-            </div>
-          </div>-->
           <th
             v-for="(tableCell, j) in tableData.rows[0].cells"
             :key="j"
@@ -55,35 +38,6 @@
               class="table-header-cell-content"
               :style="{ whiteSpace: whiteSpace, wordWrap: wordWrap, textOverflow: textOverflow }"
             >{{ tableCell.data }}</span>
-            <!-- <span
-              v-if="sortConfig.includes(j)"
-              class="table-sort flex-dir-column"
-              :style="{ height: '30px' }"
-            >
-              <i
-                class="sort-btns sort-ascending"
-                :class="{ 'activated': activatedSort[j] && activatedSort[j] === 'ascending' }"
-                @click.stop="onSort(j, 'ascending')"
-              ></i>
-              <i
-                class="sort-btns sort-descending"
-                :class="{ 'activated': activatedSort[j] && activatedSort[j] === 'descending' }"
-                @click.stop="onSort(j, 'descending')"
-              ></i>
-            </span>-->
-            <!-- <span
-              v-if="filterConfig[j]"
-              class="table-filter flex-c-c"
-              :style="{ height: headerHeight + 'px' }"
-            >
-              <filter-panel
-                :content="filterConfig[j].content"
-                @filter="(checked) => { onFilter(j, checked, filterConfig[j]) }"
-                @reset="clearFilter(j)"
-              >
-                <i slot="reference" class="iconfont icondown"></i>
-              </filter-panel>
-            </span>-->
           </th>
         </thead>
         <!-- Table Body -->
@@ -154,7 +108,6 @@
 <script>
 import { unemptyArray, is2DMatrix } from "../utils/array.js";
 import { unique } from "../utils/unique.js";
-// import VueScrollbar from "./scrollbar/VueScrollbar";
 import VueInput from "./VueInput.vue";
 import FilterPanel from "./FilterPanel.vue";
 import VuePagination from "./VuePagination.vue";
@@ -178,31 +131,6 @@ export default {
     };
   },
   props: {
-    // 表格相关信息
-    // params.data: （二维矩阵）表格数据
-    // params.header: (String) 表头类型。 'row': 第一行作为表头； 'column': 第一列作为表头； ''/'none'/other: 无表头。 默认无
-    // params.border: (Boolean) 是否带边框。默认不带
-    // params.stripe: (Boolean) 行背景间隔条纹显示。默认false
-    // params.highlight: (Object) 配置高亮背景的 行/列/表单元
-    // params.highlightedColor: (String) 高亮背景的颜色。
-    // params.wordWrap: (String) 表格单元中文本的长单词换行 'normal/break-word'  默认normal
-    // params.whiteSpace: (String) 表格单元中文本的空白处理 'nowrap/normal/pre/pre-wrap/pre-line'  默认nowrap
-    // params.textOverflow: (String) 表格单元中文本溢出处理 'clip/ellipsis'  默认clip
-    // params.showCheck: (Boolean) 是否在第一列前显示多选（勾选）框。 默认不显示。  注：仅当params.header为'row时，第一行第一列为'全选'框，否则第一列均为当前行的勾选框
-    // params.enableSearch: (Boolean) 启用搜索功能。默认禁用
-    // params.minWidth: (Number) table最小宽度。默认300
-    // params.maxWidth: (Number) table最大宽度。默认1000
-    // params.height: (Number) table高度。
-    // params.headerHeight: (Number) table row高度。默认30
-    // params.rowHeight: (Number) table row高度。默认30
-    // params.columnWidth: (Array) 指定某一列或某几列的宽度，剩余列宽度均分. [{column: 0, width: 80}, {column: 1, width: '20%'}]
-    // params.sort: (Array) 指定以某列为基准排序。如指定第1列和第二列可排序：[0, 1]。 只在配置了第一行作为表头时有效
-    // params.edit: (Object) 配置可编辑的 行/列/表单元。 如：{ row: [2, 3, ... ], column: [3, 4, ... ], cell: [[4, 4], [5, 6], ... ] } ；负数表示倒序（如-1为最后1行/列）；row: 'all' 所有行
-    //                      编辑会改变表格显示的数据，不会改变传入的源数据。调用组件方法获取表格数据时，返回编辑后的数据。表头不可编辑。默认禁用
-    // params.filter: (Array) 配置基于列的筛选。如： [{column: 0, content: [{text: '> 5', value: 5}], method: (value, tableCell) => { ... }}]
-    // params.pagination: (Boolean) 是否启用分页功能。默认false
-    // params.pageSize: (Number) 每页显示条数
-    // params.pageSizes: (Array) 每页显示条数的可选值
     params: {
       type: Object,
       default: () => {
@@ -1119,7 +1047,6 @@ $borderColor: #dcdfe6;
   border: none;
   margin-top: 3em;
   width: 100%;
-  // border-bottom: 1px solid $borderColor;
 }
 
 .v-table.v-show-border {
@@ -1152,31 +1079,11 @@ $borderColor: #dcdfe6;
 }
 
 .table-check {
-  // box-sizing: border-box;
-  // height: 100%;
-  // padding: 0 8px;
-  // overflow: hidden;
-  // -webkit-flex: 0 0 50px;
-  // -ms-flex: 0 0 50px;
-  // flex: 0 0 50px;
-  // border: none;
   display: none;
 }
 
 .table-check-all,
 .table-check-row {
-  // box-sizing: border-box;
-  // height: 14px;
-  // width: 14px;
-  // font-weight: 400;
-  // color: #606266;
-  // border: 1px solid $borderColor;
-  // border-radius: 2px;
-  // cursor: pointer;
-  // overflow: hidden;
-  // i.iconfont {
-  //   font-size: 12px;
-  // }
   display: none;
 }
 .table-check-all:hover,
