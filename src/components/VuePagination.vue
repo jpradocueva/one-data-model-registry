@@ -1,7 +1,7 @@
 <template>
   <div class="vue-pagination flex-c-e" v-if="!disabled">
-    <div 
-      v-if="pageSizes && pageSizes.length > 0" 
+    <div
+      v-if="pageSizes && pageSizes.length > 0"
       class="pagination-size flex-c-b"
       @click="showPageSizeOptions = !showPageSizeOptions"
       ref="pSize"
@@ -12,39 +12,35 @@
       </span>
       <transition name="zoom-in-top">
         <div class="size-options" v-show="showPageSizeOptions">
-          <div 
-            v-for="(item, index) in pageSizes" 
-            :key="index" 
+          <div
+            v-for="(item, index) in pageSizes"
+            :key="index"
             class="size-item flex-c"
             @click.stop="onSelect(index)"
-          >
-            {{ item }}/page
-          </div>
+          >{{ item }}/page</div>
         </div>
       </transition>
     </div>
     <div v-if="total > 0" class="pagination-page flex-c">
-      <span 
-        class="page-item page-forward flex-c-c" 
+      <span
+        class="page-item page-forward flex-c-c"
         :class="{ 'is-disabled': disableForward }"
         @click="onForward"
       >
         <i class="iconfont iconleft"></i>
       </span>
-      <span 
-        v-for="(page, index) in pages" 
-        :key="index" 
+      <span
+        v-for="(page, index) in pages"
+        :key="index"
         class="page-item flex-c-c"
         :class="{
           'is-disabled': page.disabled,
           'is-activated': page.activated && !page.disabled
         }"
         @click="onPage(page)"
-      >
-        {{ page.value }}
-      </span>
-      <span 
-        class="page-item page-next flex-c-c" 
+      >{{ page.value }}</span>
+      <span
+        class="page-item page-next flex-c-c"
         :class="{ 'is-disabled': disableNext }"
         @click="onNext"
       >
@@ -55,12 +51,12 @@
 </template>
 
 <script>
-import ClickOutside from '../utils/clickoutside.js'
+import ClickOutside from "../utils/clickoutside.js";
 
-const pageCountMax = 9
+const pageCountMax = 9;
 
 export default {
-  name: 'VuePagination',
+  name: "VuePagination",
   data() {
     return {
       clickOutside: null,
@@ -69,80 +65,88 @@ export default {
       showPageSizeOptions: false,
       pageCount: 1, // 页数
       currentPage: 1 // 当前页编号
-    }
+    };
   },
   props: {
     total: Number,
     pageSize: Number,
-    pageSizes: { type: Array, default: () => [10, 20, 50, 100]},
+    pageSizes: { type: Array, default: () => [10, 20, 50, 100] },
     disabled: { type: Boolean, default: false }
   },
   computed: {
-    disableForward () {
-      return this.currentPage === 1
+    disableForward() {
+      return this.currentPage === 1;
     },
-    disableNext () {
-      return this.currentPage === this.pageCount
+    disableNext() {
+      return this.currentPage === this.pageCount;
     }
   },
   watch: {
     total: {
-      handler (v) {
+      handler(v) {
         if (v > 0 && this.size > 0) {
-          this.$nextTick(() => { this.initPages(v) })
+          this.$nextTick(() => {
+            this.initPages(v);
+          });
         }
       },
       immediate: true
     },
     pageSize: {
-      handler (v) {
+      handler(v) {
         if (v > 0 && this.size !== v) {
-          this.size = v
-          this.total > 0 ? this.$nextTick(() => { this.initPages(this.total) }) : ''
+          this.size = v;
+          this.total > 0
+            ? this.$nextTick(() => {
+                this.initPages(this.total);
+              })
+            : "";
         }
       },
       immediate: true
     },
     pageSizes: {
-      handler (v) {
+      handler(v) {
         if (v && v.length > 0 && this.size !== this.pageSize) {
-          this.size = v[0]
+          this.size = v[0];
         }
-        this.showPageSizeOptions = false
+        this.showPageSizeOptions = false;
       },
       deep: true,
       immediate: true
     }
   },
-  mounted () {
-    let selfEle = this.$refs.pSize
+  mounted() {
+    let selfEle = this.$refs.pSize;
     if (selfEle) {
-      this.clickOutside = new ClickOutside([selfEle], document, () => { this.showPageSizeOptions = false })
-      this.clickOutside.bind()
+      this.clickOutside = new ClickOutside([selfEle], document, () => {
+        this.showPageSizeOptions = false;
+      });
+      this.clickOutside.bind();
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.clickOutside && this.clickOutside.unbind) {
-      this.clickOutside.unbind()
+      this.clickOutside.unbind();
     }
   },
   methods: {
-    initPages (total) {
-      if (!(total > 0)) return
-      this.pageCount = Math.ceil(total / this.size)
-      this.toPage(1)
+    initPages(total) {
+      if (!(total > 0)) return;
+      this.pageCount = Math.ceil(total / this.size);
+      this.toPage(1);
     },
-    onPage (page) {
-      if (page.disabled || page.activated) return
-      this.toPage(page.number)
+    onPage(page) {
+      if (page.disabled || page.activated) return;
+      this.toPage(page.number);
     },
-    onForward () {
-      if (this.disableForward) return
-      this.toPage(this.currentPage - 1)
+    onForward() {
+      if (this.disableForward) return;
+      this.toPage(this.currentPage - 1);
     },
-    onNext () {
-      if (this.disableNext) return
-      this.toPage(this.currentPage + 1)
+    onNext() {
+      if (this.disableNext) return;
+      this.toPage(this.currentPage + 1);
     },
     /**
      *  page数小于pageCountMax时，全部显示
@@ -152,80 +156,130 @@ export default {
      *  第二种 (thresholdLeft, thresholdRight): 1...pages...pageCount
      *  第三种 [thresholdRight, pageCount]: 1显示page1, 2显示..., 3到pageCountMax依次显示page最后面编号
      */
-    toPage (tagetPage) {
-      if (this.disabled) return
-      if (tagetPage < 1 || tagetPage > this.pageCount) return
+    toPage(tagetPage) {
+      if (this.disabled) return;
+      if (tagetPage < 1 || tagetPage > this.pageCount) return;
 
       if (this.pageCount <= pageCountMax) {
-        this.pages.splice(0, this.pages.length)
-        for (let i = 1; i < (this.pageCount + 1); i++) {
-          this.pages.push({ number: i, value: String(i), disabled: false, activated: !!(tagetPage === i) })
+        this.pages.splice(0, this.pages.length);
+        for (let i = 1; i < this.pageCount + 1; i++) {
+          this.pages.push({
+            number: i,
+            value: String(i),
+            disabled: false,
+            activated: !!(tagetPage === i)
+          });
         }
-        this.currentPage = tagetPage
-        this.notifyPageChanged(this.currentPage)
-        return
+        this.currentPage = tagetPage;
+        this.notifyPageChanged(this.currentPage);
+        return;
       }
 
-      const thresholdLeft = Math.floor(pageCountMax / 2)
-      const thresholdRight = this.pageCount - thresholdLeft + 1
-      let pages = []
+      const thresholdLeft = Math.floor(pageCountMax / 2);
+      const thresholdRight = this.pageCount - thresholdLeft + 1;
+      let pages = [];
 
       if (tagetPage <= thresholdLeft) {
-        for (let i = 1; i < (pageCountMax + 1); i++) {
-          pages.push({ number: i, value: String(i), disabled: false, activated: !!(tagetPage === i) })
+        for (let i = 1; i < pageCountMax + 1; i++) {
+          pages.push({
+            number: i,
+            value: String(i),
+            disabled: false,
+            activated: !!(tagetPage === i)
+          });
         }
-        pages[pages.length - 2] = { number: this.pageCount - 1, value: '...', disabled: true, activated: false }
-        pages[pages.length - 1].value = String(this.pageCount)
-        pages[pages.length - 1].number = this.pageCount
+        pages[pages.length - 2] = {
+          number: this.pageCount - 1,
+          value: "...",
+          disabled: true,
+          activated: false
+        };
+        pages[pages.length - 1].value = String(this.pageCount);
+        pages[pages.length - 1].number = this.pageCount;
       } else if (tagetPage >= thresholdRight) {
-        for (let i = (this.pageCount - pageCountMax + 1); i < (this.pageCount + 1); i++) {
-          pages.push({ number: i, value: String(i), disabled: false, activated: !!(tagetPage === i) })
+        for (
+          let i = this.pageCount - pageCountMax + 1;
+          i < this.pageCount + 1;
+          i++
+        ) {
+          pages.push({
+            number: i,
+            value: String(i),
+            disabled: false,
+            activated: !!(tagetPage === i)
+          });
         }
-        pages[0].value = '1'
-        pages[0].number = 1
-        pages[1] = { number: 2, value: '...', disabled: true, activated: false }
+        pages[0].value = "1";
+        pages[0].number = 1;
+        pages[1] = {
+          number: 2,
+          value: "...",
+          disabled: true,
+          activated: false
+        };
       } else {
         for (let i = 0; i < pageCountMax; i++) {
-          let number = tagetPage - Math.floor(pageCountMax / 2) + i
-          pages.push({ 
-            number: number, 
-            value: String(number), 
-            disabled: false, 
+          let number = tagetPage - Math.floor(pageCountMax / 2) + i;
+          pages.push({
+            number: number,
+            value: String(number),
+            disabled: false,
             activated: !!(tagetPage === number)
-          })
+          });
         }
-        pages[0] = { number: 1, value: '1', disabled: false, activated: false }
-        pages[1] = { number: 2, value: '...', disabled: true, activated: false }
-        pages[pages.length - 2] = { number: this.pageCount - 1, value: '...', disabled: true, activated: false }
-        pages[pages.length - 1] = { number: this.pageCount, value: String(this.pageCount), disabled: false, activated: false }
+        pages[0] = { number: 1, value: "1", disabled: false, activated: false };
+        pages[1] = {
+          number: 2,
+          value: "...",
+          disabled: true,
+          activated: false
+        };
+        pages[pages.length - 2] = {
+          number: this.pageCount - 1,
+          value: "...",
+          disabled: true,
+          activated: false
+        };
+        pages[pages.length - 1] = {
+          number: this.pageCount,
+          value: String(this.pageCount),
+          disabled: false,
+          activated: false
+        };
       }
 
-      this.currentPage = tagetPage
-      this.pages.splice(0, this.pages.length)
-      this.pages.push(...pages)
-      this.notifyPageChanged(this.currentPage)
+      this.currentPage = tagetPage;
+      this.pages.splice(0, this.pages.length);
+      this.pages.push(...pages);
+      this.notifyPageChanged(this.currentPage);
     },
-    notifyPageChanged (currentPage) {
+    notifyPageChanged(currentPage) {
       this.$nextTick(() => {
-        this.$emit('current-page', currentPage)
-      })
+        this.$emit("current-page", currentPage);
+      });
     },
-    onSelect (index) {
-      if (this.pageSizes && (this.pageSizes.length > index) && (this.size !== this.pageSizes[index])) {
-        this.size = this.pageSizes[index]
-        this.$emit('size', this.size)
-        this.$nextTick(() => { this.initPages(this.total) })
+    onSelect(index) {
+      if (
+        this.pageSizes &&
+        this.pageSizes.length > index &&
+        this.size !== this.pageSizes[index]
+      ) {
+        this.size = this.pageSizes[index];
+        this.$emit("size", this.size);
+        this.$nextTick(() => {
+          this.initPages(this.total);
+        });
       }
-      this.showPageSizeOptions = false
+      this.showPageSizeOptions = false;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-$borderColor: #DCDFE6;
+$borderColor: #dcdfe6;
 
-.pagination-size{
+.pagination-size {
   position: relative;
   box-sizing: border-box;
   height: 22px;
@@ -235,23 +289,24 @@ $borderColor: #DCDFE6;
   font-size: 12px;
   font-weight: 500;
   color: #606266;
+  background-color: #f5f5f5;
   outline: 0;
   border: 1px solid $borderColor;
   cursor: pointer;
-  i.iconfont{
+  i.iconfont {
     font-size: 12px;
     height: 12px;
     width: 12px;
     font-weight: 500;
   }
-  .size-icon{
+  .size-icon {
     height: 12px;
     width: 12px;
   }
-  .size-text{
+  .size-text {
     margin-right: 16px;
   }
-  .size-options{
+  .size-options {
     position: absolute;
     box-sizing: border-box;
     padding: 4px 0px;
@@ -260,23 +315,24 @@ $borderColor: #DCDFE6;
     top: 100%;
     left: -1px;
     right: -1px;
-    border: 1px solid #E5EEF5;
-    box-shadow: 0px 2px 12px 0 rgba(0,0,0,0.1);
+    border: 1px solid #e5eef5;
+    background-color: #ccc;
+    box-shadow: 0px 2px 12px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
     cursor: auto;
-    .size-item{
+    .size-item {
       outline: 0;
       padding: 4px 6px;
       cursor: pointer;
       overflow: hidden;
     }
-    .size-item:hover{
-      background-color: #F1F3F5;
+    .size-item:hover {
+      background-color: #f1f3f5;
     }
   }
 }
 
-.page-item{
+.page-item {
   box-sizing: border-box;
   height: 22px;
   width: 22px;
@@ -286,7 +342,7 @@ $borderColor: #DCDFE6;
   border-right: none;
   outline: 0;
   cursor: pointer;
-  i.iconfont{
+  i.iconfont {
     font-size: 12px;
     height: 12px;
     width: 12px;
@@ -294,7 +350,8 @@ $borderColor: #DCDFE6;
   }
 }
 
-.page-item, .pagination-size{
+.page-item,
+.pagination-size {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -302,31 +359,31 @@ $borderColor: #DCDFE6;
   -webkit-user-drag: none;
 }
 
-.page-item.page-forward{
+.page-item.page-forward {
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
 }
-.page-item.page-next{
+.page-item.page-next {
   border-right: 1px solid $borderColor;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
 }
 
-.page-item:hover{
-  background-color: #F1F3F5;
+.page-item:hover {
+  background-color: #f1f3f5;
 }
 
-.page-item.is-activated{
-  color: #FFFFFF;
-  border-color: #409EFF;
-  background-color: #409EFF;
+.page-item.is-activated {
+  color: #ffffff;
+  border-color: #409eff;
+  background-color: #409eff;
 }
 
 .page-item.is-disabled,
 .page-item.is-disabled:hover,
 .page-item.is-disabled:focus,
-.page-item.is-disabled:active{
-  cursor:not-allowed;
+.page-item.is-disabled:active {
+  cursor: not-allowed;
   background-color: #f5f5f5;
   outline: 0;
 }

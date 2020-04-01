@@ -40,13 +40,10 @@
 </template>
 
 <script>
-// import logoImg from "@/assets/image/logo.png";
-
 export default {
   name: "NavMenu",
   data() {
     return {
-      // logoImg,
       logoText: "ONE DATA MODEL REGISTRY"
     };
   }
