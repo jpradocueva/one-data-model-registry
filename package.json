@@ -8,7 +8,9 @@
     "build": "webpack -p --hide-modules --config ./build/webpack.prod.conf.js",
     "build:doc": "webpack -p --hide-modules --config ./build/webpack.doc.conf.js",
     "build:server": "webpack -p --hide-modules --config ./build/webpack.server.conf.js",
-    "server": "node dev/server/server.js"
+    "server": "node dev/server/server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "TheoXiong",
   "license": "MIT",
@@ -35,6 +37,7 @@
     "express": "^4.17.1",
     "file-loader": "^1.1.11",
     "file-saver": "^2.0.2",
+    "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash.clonedeep": "^4.5.0",
     "mini-css-extract-plugin": "0.4.0",
@@ -73,5 +76,5 @@
   "bugs": {
     "url": "https://github.com/MiaTaylor/one-data-model-registry/issues"
   },
-  "homepage": "https://github.com/MiaTaylor/one-data-model-registry"
+  "homepage": "https://miataylor.github.io/one-data-model-registry/"
 }
