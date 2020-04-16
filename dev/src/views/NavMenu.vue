@@ -11,18 +11,21 @@
             target="_blank"
             rel="noopener noreferrer"
             class="p-right-1"
-          >README</a>
+            >README</a
+          >
           <a
             href="https://github.com/one-data-model/prototype-registry"
             target="_blank"
             rel="noopener noreferrer"
             class="p-right-1"
-          >GITHUB</a>
+            >GITHUB</a
+          >
           <a
             href="https://one-data-model.github.io/prototype-registry/"
             target="_blank"
             rel="noopener noreferrer"
-          >CONTACT</a>
+            >CONTACT</a
+          >
         </div>
       </div>
     </div>
@@ -31,8 +34,12 @@
         To submit new models please follow the instructions provided in the
         <a
           href="https://github.com/one-data-model/prototype-registry/blob/verification/README.md"
+          target="_blank"
+          rel="noopener noreferrer"
           class="p-link"
-        >README</a> file.
+          >README</a
+        >
+        file.
       </p>
     </div>
   </div>
@@ -43,9 +50,9 @@ export default {
   name: "NavMenu",
   data() {
     return {
-      logoText: "ONE DATA MODEL REGISTRY"
+      logoText: "ONE DATA MODEL REGISTRY",
     };
-  }
+  },
 };
 </script>
 
@@ -103,5 +110,11 @@ export default {
 .nav-content-item:hover,
 .nav-menu a:hover {
   color: #ffffff;
+}
+
+@media only screen and (max-width: 412px) {
+  .nav-menu {
+    padding: 1em 0;
+  }
 }
 </style>

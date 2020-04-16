@@ -105,4 +105,17 @@ export default {
 .v-show-border {
   border: 1px solid #ccc;
 }
+
+@media only screen and (max-width: 660px) {
+  .home section {
+    top: 7em !important;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .home section {
+    top: 10em !important;
+    padding: 2px 0 !important;
+  }
+}
 </style>

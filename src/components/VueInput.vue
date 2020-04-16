@@ -238,4 +238,16 @@ i.iconfont:after {
   /* Internet Explorer 10-11 */
   color: #909399;
 }
+
+@media only screen and (max-width: 412px) {
+  .vue-input {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .vue-input {
+    width: 290px;
+  }
+}
 </style>

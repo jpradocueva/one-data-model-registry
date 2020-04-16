@@ -172,22 +172,6 @@ export default {
       }
       return [];
     },
-    tableBorder() {
-      return !!(this.params && this.params.border);
-    },
-    rowStripe() {
-      return !!(this.params && this.params.stripe);
-    },
-    highlightConfig() {
-      if (
-        this.params &&
-        this.params.highlight &&
-        typeof this.params.highlight === "object"
-      ) {
-        return this.params.highlight;
-      }
-      return {};
-    },
     highlightedColor() {
       if (
         this.params &&
@@ -233,9 +217,6 @@ export default {
     },
     headerInfirstColumn() {
       return !!(this.params && this.params.header === "column");
-    },
-    showCheck() {
-      return !!(this.params && this.params.showCheck);
     },
     enableSearch() {
       return !!(this.params && this.params.enableSearch);
@@ -299,47 +280,6 @@ export default {
           }
         });
         return obj;
-      }
-      return {};
-    },
-    editConfig() {
-      if (
-        this.params &&
-        this.params.edit &&
-        typeof this.params.edit === "object"
-      ) {
-        return this.params.edit;
-      }
-      return {};
-    },
-    filterConfig() {
-      if (this.params && unemptyArray(this.params.filter)) {
-        let filterObj = {};
-        this.params.filter.forEach((f) => {
-          if (
-            f &&
-            typeof f.column === "number" &&
-            f.column >= 0 &&
-            typeof f.method === "function" &&
-            unemptyArray(f.content)
-          ) {
-            if (
-              f.content.every((c) => {
-                return (
-                  c &&
-                  typeof c.text === "string" &&
-                  typeof c.value !== "undefined"
-                );
-              })
-            ) {
-              let content = f.content.map((c) => {
-                return { ...c, checked: false, key: unique(`content-`) };
-              });
-              filterObj[f.column] = { ...f, content, key: unique(`filter-`) };
-            }
-          }
-        });
-        return filterObj;
       }
       return {};
     },
@@ -540,7 +480,6 @@ export default {
         };
       }
     },
-
     isEditable(rowIndex, columnIndex) {
       if (
         !(
@@ -643,21 +582,6 @@ export default {
       }
 
       return false;
-    },
-    /**
-     * @function Cell
-     * @param {Object} tableCell
-     * @param {Number} rowIndex
-     * @param {Number} columnIndex
-     */
-    onCellBlur(tableCell, rowIndex, columnIndex) {
-      if (!this.isEditable(rowIndex, columnIndex)) return;
-
-      let cellEle = document.querySelector(`#${tableCell.key}`);
-      if (cellEle && tableCell.data !== trim(cellEle.innerHTML)) {
-        tableCell.data = trim(cellEle.innerHTML);
-        this.$emit("cell-change", rowIndex, columnIndex, tableCell.data);
-      }
     },
     onCellKeyEnter(e) {},
     /**
