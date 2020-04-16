@@ -2,7 +2,6 @@
   <div class="nav-menu">
     <div class="dev-flex-c-b">
       <div class="nav-logo dev-flex-c">
-        <!-- <img :src="logoImg" class="nav-logo-img" /> -->
         <span class="nav-logo-text">{{ logoText }}</span>
       </div>
       <div class="nav-content dev-flex-c">
@@ -63,11 +62,6 @@ export default {
   -ms-user-select: none;
   -webkit-user-drag: none;
   background-color: rgba(125, 125, 125, 0.5);
-}
-
-.nav-logo-img {
-  width: 24px;
-  height: 24px;
 }
 .nav-logo-text {
   margin-left: 0.4em;

@@ -1,7 +1,7 @@
 {
-  "name": "vue-table-dynamic",
+  "name": "one-data-model-registry",
   "version": "0.1.0",
-  "description": "A vue component of dynamic table",
+  "description": "Table for One Data Model Registry",
   "main": "dist/index.min.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.conf.js --open --hot",
@@ -68,10 +68,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheoXiong/vue-table-dynamic.git"
+    "url": "git+https://github.com/MiaTaylor/one-data-model-registry.git"
   },
   "bugs": {
-    "url": "https://github.com/TheoXiong/vue-table-dynamic/issues"
+    "url": "https://github.com/MiaTaylor/one-data-model-registry/issues"
   },
-  "homepage": "https://github.com/TheoXiong/vue-table-dynamic#readme"
+  "homepage": "https://github.com/MiaTaylor/one-data-model-registry#readme"
 }
