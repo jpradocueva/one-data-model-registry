@@ -1,14 +1,16 @@
 {
-  "name": "vue-table-dynamic",
+  "name": "one-data-model-registry",
   "version": "0.1.0",
-  "description": "A vue component of dynamic table",
+  "description": "Table for One Data Model Registry",
   "main": "dist/index.min.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.conf.js --open --hot",
     "build": "webpack -p --hide-modules --config ./build/webpack.prod.conf.js",
     "build:doc": "webpack -p --hide-modules --config ./build/webpack.doc.conf.js",
     "build:server": "webpack -p --hide-modules --config ./build/webpack.server.conf.js",
-    "server": "node dev/server/server.js"
+    "server": "node dev/server/server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "TheoXiong",
   "license": "MIT",
@@ -35,6 +37,7 @@
     "express": "^4.17.1",
     "file-loader": "^1.1.11",
     "file-saver": "^2.0.2",
+    "gh-pages": "^2.2.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash.clonedeep": "^4.5.0",
     "mini-css-extract-plugin": "0.4.0",
@@ -68,10 +71,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheoXiong/vue-table-dynamic.git"
+    "url": "git+https://github.com/MiaTaylor/one-data-model-registry.git"
   },
   "bugs": {
-    "url": "https://github.com/TheoXiong/vue-table-dynamic/issues"
+    "url": "https://github.com/MiaTaylor/one-data-model-registry/issues"
   },
-  "homepage": "https://github.com/TheoXiong/vue-table-dynamic#readme"
+  "homepage": "https://miataylor.github.io/one-data-model-registry"
 }

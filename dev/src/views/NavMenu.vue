@@ -2,7 +2,6 @@
   <div class="nav-menu">
     <div class="dev-flex-c-b">
       <div class="nav-logo dev-flex-c">
-        <!-- <img :src="logoImg" class="nav-logo-img" /> -->
         <span class="nav-logo-text">{{ logoText }}</span>
       </div>
       <div class="nav-content dev-flex-c">
@@ -12,18 +11,21 @@
             target="_blank"
             rel="noopener noreferrer"
             class="p-right-1"
-          >README</a>
+            >README</a
+          >
           <a
             href="https://github.com/one-data-model/prototype-registry"
             target="_blank"
             rel="noopener noreferrer"
             class="p-right-1"
-          >GITHUB</a>
+            >GITHUB</a
+          >
           <a
             href="https://one-data-model.github.io/prototype-registry/"
             target="_blank"
             rel="noopener noreferrer"
-          >CONTACT</a>
+            >CONTACT</a
+          >
         </div>
       </div>
     </div>
@@ -32,8 +34,12 @@
         To submit new models please follow the instructions provided in the
         <a
           href="https://github.com/one-data-model/prototype-registry/blob/verification/README.md"
+          target="_blank"
+          rel="noopener noreferrer"
           class="p-link"
-        >README</a> file.
+          >README</a
+        >
+        file.
       </p>
     </div>
   </div>
@@ -44,9 +50,9 @@ export default {
   name: "NavMenu",
   data() {
     return {
-      logoText: "ONE DATA MODEL REGISTRY"
+      logoText: "ONE DATA MODEL REGISTRY",
     };
-  }
+  },
 };
 </script>
 
@@ -63,11 +69,6 @@ export default {
   -ms-user-select: none;
   -webkit-user-drag: none;
   background-color: rgba(125, 125, 125, 0.5);
-}
-
-.nav-logo-img {
-  width: 24px;
-  height: 24px;
 }
 .nav-logo-text {
   margin-left: 0.4em;
@@ -109,5 +110,11 @@ export default {
 .nav-content-item:hover,
 .nav-menu a:hover {
   color: #ffffff;
+}
+
+@media only screen and (max-width: 412px) {
+  .nav-menu {
+    padding: 1em 0;
+  }
 }
 </style>

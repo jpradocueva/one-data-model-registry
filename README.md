@@ -1,6 +1,6 @@
 # One Data Model Registry
 
-[One Data Model Registry](https://one-data-model.github.io/prototype-registry/)
+[One Data Model Registry](https://miataylor.github.io/one-data-model-registry/)
 
 ### Run In Development - On Terminal
 1. ```npm install```

@@ -4,7 +4,7 @@
     @mouseenter="hovering = true"
     @mouseleave="hovering = false"
     :style="{
-      backgroundColor: inputBackground
+      backgroundColor: inputBackground,
     }"
   >
     <input
@@ -16,12 +16,12 @@
       :class="{
         'placeholder-light': placeholderEffect === 'light',
         'placeholder-dark': placeholderEffect === 'dark',
-        'prefix': $slots.prefix || prefixIcon,
-        'suffix': $slots.suffix || suffixIcon
+        prefix: $slots.prefix || prefixIcon,
+        suffix: $slots.suffix || suffixIcon,
       }"
       :style="{
         color: inputColor,
-        borderColor: borderColor
+        borderColor: borderColor,
       }"
       @compositionstart="handleCompositionStart"
       @compositionend="handleCompositionEnd"
@@ -48,7 +48,7 @@ export default {
     return {
       isComposing: false,
       hovering: false,
-      focused: false
+      focused: false,
     };
   },
   props: {
@@ -62,7 +62,7 @@ export default {
     inputBorderColorHovering: { type: String, default: "#C0C4CC" },
     inputBorderColorFocused: { type: String, default: "#409EFF" },
     prefixIcon: String,
-    suffixIcon: String
+    suffixIcon: String,
   },
   computed: {
     nativeInputValue() {
@@ -78,12 +78,12 @@ export default {
       } else {
         return this.inputBorderColor;
       }
-    }
+    },
   },
   watch: {
     nativeInputValue() {
       this.setNativeInputValue();
-    }
+    },
   },
   mounted() {
     this.setNativeInputValue();
@@ -131,8 +131,8 @@ export default {
       if (!input) return;
       if (input.value === this.nativeInputValue) return;
       input.value = this.nativeInputValue;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -167,20 +167,11 @@ export default {
 .vue-input:active {
   outline: 0;
 }
-/* .vue-input.prefix {
-  padding-left: 30px;
-} */
+
 .vue-input.suffix {
   padding-right: 30px;
 }
 .vue-input-prefix {
-  /* position: absolute;
-  height: 100%;
-  left: 5px;
-  top: 0;
-  text-align: center;
-  color: #c0c4cc;
-  transition: all 0.3s; */
   display: none;
 }
 .vue-input-suffix {
@@ -246,5 +237,17 @@ i.iconfont:after {
 .vue-input.placeholder-dark:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #909399;
+}
+
+@media only screen and (max-width: 412px) {
+  .vue-input {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .vue-input {
+    width: 290px;
+  }
 }
 </style>

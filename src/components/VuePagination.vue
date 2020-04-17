@@ -17,7 +17,9 @@
             :key="index"
             class="size-item flex-c"
             @click.stop="onSelect(index)"
-          >{{ item }}/page</div>
+          >
+            {{ item }}/page
+          </div>
         </div>
       </transition>
     </div>
@@ -35,10 +37,11 @@
         class="page-item flex-c-c"
         :class="{
           'is-disabled': page.disabled,
-          'is-activated': page.activated && !page.disabled
+          'is-activated': page.activated && !page.disabled,
         }"
         @click="onPage(page)"
-      >{{ page.value }}</span>
+        >{{ page.value }}</span
+      >
       <span
         class="page-item page-next flex-c-c"
         :class="{ 'is-disabled': disableNext }"
@@ -61,17 +64,17 @@ export default {
     return {
       clickOutside: null,
       pages: [],
-      size: 10, // 每页显示数量
+      size: 10,
       showPageSizeOptions: false,
-      pageCount: 1, // 页数
-      currentPage: 1 // 当前页编号
+      pageCount: 1,
+      currentPage: 1,
     };
   },
   props: {
     total: Number,
     pageSize: Number,
     pageSizes: { type: Array, default: () => [10, 20, 50, 100] },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     disableForward() {
@@ -79,7 +82,7 @@ export default {
     },
     disableNext() {
       return this.currentPage === this.pageCount;
-    }
+    },
   },
   watch: {
     total: {
@@ -90,7 +93,7 @@ export default {
           });
         }
       },
-      immediate: true
+      immediate: true,
     },
     pageSize: {
       handler(v) {
@@ -103,7 +106,7 @@ export default {
             : "";
         }
       },
-      immediate: true
+      immediate: true,
     },
     pageSizes: {
       handler(v) {
@@ -113,8 +116,8 @@ export default {
         this.showPageSizeOptions = false;
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   mounted() {
     let selfEle = this.$refs.pSize;
@@ -148,14 +151,6 @@ export default {
       if (this.disableNext) return;
       this.toPage(this.currentPage + 1);
     },
-    /**
-     *  page数小于pageCountMax时，全部显示
-     *  page数大于pageCountMax时，page视图分三种，[ 1 ---> thresholdLeft ---> thresholdRight ---> pageCount ]
-     *  根据当前激活page编号，显示对应视图
-     *  第一种 [1, thresholdLeft]: 1到pageCountMax-2依次显示page最前面编号, pageCountMax-1显示..., pageCountMax显示pageCount
-     *  第二种 (thresholdLeft, thresholdRight): 1...pages...pageCount
-     *  第三种 [thresholdRight, pageCount]: 1显示page1, 2显示..., 3到pageCountMax依次显示page最后面编号
-     */
     toPage(tagetPage) {
       if (this.disabled) return;
       if (tagetPage < 1 || tagetPage > this.pageCount) return;
@@ -167,7 +162,7 @@ export default {
             number: i,
             value: String(i),
             disabled: false,
-            activated: !!(tagetPage === i)
+            activated: !!(tagetPage === i),
           });
         }
         this.currentPage = tagetPage;
@@ -185,14 +180,14 @@ export default {
             number: i,
             value: String(i),
             disabled: false,
-            activated: !!(tagetPage === i)
+            activated: !!(tagetPage === i),
           });
         }
         pages[pages.length - 2] = {
           number: this.pageCount - 1,
           value: "...",
           disabled: true,
-          activated: false
+          activated: false,
         };
         pages[pages.length - 1].value = String(this.pageCount);
         pages[pages.length - 1].number = this.pageCount;
@@ -206,7 +201,7 @@ export default {
             number: i,
             value: String(i),
             disabled: false,
-            activated: !!(tagetPage === i)
+            activated: !!(tagetPage === i),
           });
         }
         pages[0].value = "1";
@@ -215,7 +210,7 @@ export default {
           number: 2,
           value: "...",
           disabled: true,
-          activated: false
+          activated: false,
         };
       } else {
         for (let i = 0; i < pageCountMax; i++) {
@@ -224,7 +219,7 @@ export default {
             number: number,
             value: String(number),
             disabled: false,
-            activated: !!(tagetPage === number)
+            activated: !!(tagetPage === number),
           });
         }
         pages[0] = { number: 1, value: "1", disabled: false, activated: false };
@@ -232,19 +227,19 @@ export default {
           number: 2,
           value: "...",
           disabled: true,
-          activated: false
+          activated: false,
         };
         pages[pages.length - 2] = {
           number: this.pageCount - 1,
           value: "...",
           disabled: true,
-          activated: false
+          activated: false,
         };
         pages[pages.length - 1] = {
           number: this.pageCount,
           value: String(this.pageCount),
           disabled: false,
-          activated: false
+          activated: false,
         };
       }
 
@@ -271,8 +266,8 @@ export default {
         });
       }
       this.showPageSizeOptions = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
