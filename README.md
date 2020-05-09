@@ -23,7 +23,7 @@ To do that follow this process:
 
 `5. npm run-script server`
 
-Go to Localhost:9088 in your browser to verify that the new content is available.
+Go to `Localhost:9088` in your browser to verify that the new content is available.
 
 ### GitHub pages
 During the `build` the dynamic pages are created and stored in:
